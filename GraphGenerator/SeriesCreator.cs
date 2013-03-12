@@ -64,7 +64,12 @@ namespace GraphGenerator
             double minY = pointLists.SelectMany(l => l.Select(p => p.Y)).Min();
             double range = Math.Abs(maxY - minY);
 
-            return Math.Floor(minY - (range) * .001);
+            if (range <= 1)
+            {
+                return minY - 0.001;
+            }
+
+            return Math.Floor(minY - (range) * 0.001);
         }
     }
 }
